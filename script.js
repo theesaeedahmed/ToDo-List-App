@@ -27,7 +27,7 @@ let sleep = (time) =>
     });
 }
 
-async function removeDialogue(id) 
+function removeDialogue(id) 
 {
     let box=document.getElementById(id);
     box.remove();
@@ -48,6 +48,7 @@ let replaceAlert = (text) =>
     okButton.setAttribute("id", `okButton${alertId}`);
     div.appendChild(okButton);
     alertId++;
+    okButton.focus();
     okButton.setAttribute("onclick", `removeDialogue(this.parentElement.id)`);
 };
 
@@ -77,6 +78,8 @@ let replaceConfirm = (task, todoContainerId) =>
         div.appendChild(cancelButton);
 
         confirmId++;
+
+        okButton.focus();
 
         let ret = () => {
             return new Promise((resolve) => {
@@ -116,6 +119,8 @@ let takeInput = (todoBox, key) =>
         todoBox.appendChild(form);
         form.appendChild(input);
         form.appendChild(submit);
+
+        input.focus();
         
         submit.addEventListener("click", (e) => {
             e.preventDefault();
@@ -136,6 +141,12 @@ let createTodo = async (item, key) =>
 
     if(item == null)
     {
+        if(document.getElementsByTagName("form").length > 0)
+        {
+            document.getElementsByClassName(`inputItem`)[0].focus();
+            div.remove();
+            return;
+        }
         item = await takeInput(div, key);
         if(item == null || item == undefined || item == "")
         {
@@ -268,12 +279,5 @@ let deleteTodo = async (id) =>
 
 button.onclick=()=>
 {
-    // newItem=prompt("Add item to your To-Do list : ");
-    // if(newItem == null || newItem == undefined || newItem == "")
-    // {
-    //     return;
-    // }
-    // localStorage.setItem(`${++i}`, newItem);
-
     createTodo(null, ++i);
 }
