@@ -3,12 +3,9 @@ Bugs :
     1. When refreshing page, the contents might get rearranged.
     2. Any checked item will get unchecked upon refreshing.
     3. Non-responsive.
-    4. When you create a new item, you need to drag the mouse to the input text box in order to enter the item.
 
 To Update :
-    1. Upon clicking the `create new` button, the screen must scroll down to the position where the last item is being created and the 
-        cursor / keyboard must already be ready to take input.
-    2. Responsive for differnet screen layouts.
+    1. Responsive for differnet screen layouts.
 */
 
 
